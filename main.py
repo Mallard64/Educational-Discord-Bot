@@ -715,8 +715,8 @@ async def on_member_leave(member):
     f'Goodbye. I hope to see you again :('
   )
 
-@bot.command(name = 'magic69', help = 'Harness the power of the Magic 69 ball')
-async def magic69(context, question : str):
+@bot.command(name = 'magic8', help = 'Harness the power of the Magic 8 ball')
+async def magic8(context, question : str):
   if invalidation == False:
     print(question)
     await context.send("I knoweth all (including your question), ask me.")
@@ -743,21 +743,6 @@ async def create_channel(ctx, channel_name = 'REEEEE'):
     await ctx.send(f'Creating a new channel: {channel_name}')
     await guild.create_voice_channel(channel_name)
 
-@bot.command(name = 'kill', help = 'Kill every last one of them')
-async def kill(ctx, victim):
-  if invalidation == False:
-    causesofdeath = [' accidentally tripped and died while getting up to write their suicide note.',
-    ' dropped a Nokia phone on their face and split their skull.',
-    ' steps on a george foreman and dies of waffle foot.',
-    ' tried to get crafty, but they accidentally cut themselves with the scissors.:scissors:',
-    " was accused of stealing Neptune's crown...",
-    ' dies because they were just too angry.',
-    ' failed at russian roulette',
-    ' spins a fidget spinner and when it stops he dies...',
-    ' died from eating too much bread :/',
-    ' fought Pepe. One of them died.'
-    ]
-    await ctx.send(str(victim) + random.choice(causesofdeath))
 
 @bot.command(name = 'ping', help = "Screw the kill command, you'll kill them with these pings.")
 async def ping(ctx, ping, quantity : int):
@@ -767,26 +752,6 @@ async def ping(ctx, ping, quantity : int):
       else:
         break
         return
-
-@bot.command(name = 'insult', help = "Generates a string of insults, use it in a swearing-approved server.")
-async def insult(ctx, target, words):
-  if invalidation == False:
-    final = ['bitch', 'fuck', 'shit', 'son of a bitch', 'chode']
-    normie = [' fucking', ' bitchy', ' shitty', ' retraded', ' retarded']
-    if int(words) == 1:
-      await ctx.send(str(target) + ", you" + random.choice(final))
-    else:
-      pp = int(words)
-      oio = []
-      while pp - 1 > 0:
-        oio.append(normie[random.randrange(0, len(normie))])
-        pp -= 1
-      pp = int(words)
-      await ctx.send(str(target) + ", you" + ''.join(oio) + " " + random.choice(final))
-
-#@bot.command(name = 'image', help = 'send image, WIP')
-#async def image(ctx):
-  #await ctx.send(file=discord.File('logo-3.png'))
 
 
 keep_alive.keep_alive()
