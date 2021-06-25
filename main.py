@@ -1,3 +1,4 @@
+#Note that this code does not have the token.
 import keep_alive
 import time
 import random
