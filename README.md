@@ -5,7 +5,7 @@ characters, plus a handful of server utility commands. Players catch
 characters, level them up and evolve them, battle an AI or each other, and
 spend the credits they win in a shop. All progress is saved to JSON files.
 
-It was written as a learning project to get hands-on with the Discord API,
+Learning project to get hands-on with the Discord API,
 asynchronous event handling, and persisting state across restarts.
 
 ## Tech stack
