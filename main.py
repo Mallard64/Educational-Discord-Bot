@@ -1,5 +1,5 @@
-#Note that this code does not have the token.
 import keep_alive
+import os
 import time
 import random
 import discord
@@ -106,16 +106,19 @@ from discord.ext.commands import Bot
 from globals import stats
 hp1 = 100
 hp2 = 100
-file4_name = 'pog.json'
 file69_name = 'moves.json'
 load_dotenv()
-with open(file4_name, "r") as yoyo_file:
-  TOKEN = json.load(yoyo_file)
+TOKEN = os.getenv("DISCORD_TOKEN")
+if not TOKEN:
+  raise RuntimeError(
+    "DISCORD_TOKEN is not set. Copy .env.example to .env and add your bot token."
+  )
 GUILD = 'Church of Pepe' #os.getenv('Pointless Chat')
-string_utf = TOKEN.encode()
 bot = commands.Bot(command_prefix='pepe ')
-TOKEN = string_utf.decode()
-opus.load_opus("libopus.so.0")
+try:
+  opus.load_opus("libopus.so.0")
+except OSError:
+  print("libopus not found; voice features disabled.")
 
 @bot.event
 async def on_ready():

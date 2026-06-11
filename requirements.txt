@@ -1,0 +1,4 @@
+# This bot targets the discord.py 1.x API (pre-2.0 command/intents model).
+discord.py==1.7.3
+Flask>=2,<3
+python-dotenv>=0.19
