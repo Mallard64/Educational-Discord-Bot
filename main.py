@@ -8,7 +8,6 @@ from dotenv import load_dotenv
 from discord.ext import commands
 from discord import opus
 invalidation = False
-invalidation = False
 def replace(key1, key2, dicty):
   print(key1)
   print(key2)
@@ -101,8 +100,6 @@ movedata = {'Smol-Pepe' : ["Punch","Heal","Killing-Intent","Anticipate"], 'Scare
 #[power,effects,target,amount]
 #hp is 0,def is 1,atk is 2
 
-from discord.ext import commands
-from discord.ext.commands import Bot
 from globals import stats
 hp1 = 100
 hp2 = 100
@@ -196,7 +193,6 @@ async def bala(ctx):
 @bot.command(name = 'box', help = 'see your glorious characters')
 async def charsa(ctx, ff = 'o'):
   if ff == 'o':
-    sync()
     chars = userdata[str(ctx.author.id)]
     await ctx.send('You have ' + ', '.join(chars))
   else:
@@ -217,17 +213,6 @@ async def apa(ctx):
     await ctx.send('no permission :(')
 
 
-def sync():
-  file1_name = "OwO.json"
-  file2_name = "bal.json"
-  file4_name = "items.json"
-  with open(file1_name, "r") as OwO_file:
-    userdata = json.load(OwO_file)
-  with open(file2_name, "r") as bal_file:
-    baldata = json.load(bal_file)
-  with open(file4_name, "r") as item_file:
-    itemdata = json.load(item_file)
-
 @bot.command(name = 'kick', help = 'kick some people')
 async def kick(ctx, member : discord.Member):
   if invalidation == False:
@@ -240,7 +225,6 @@ async def kick(ctx, member : discord.Member):
 @bot.command(name = 'save', help = 'save progress')
 async def save(ctx):
   if invalidation == False:
-    global userdata
     with open(file1_name, "w") as OwO_file:
       json.dump(userdata, OwO_file)
     with open(file2_name, "w") as bal_file:
@@ -253,7 +237,6 @@ async def save(ctx):
 
 @bot.command(name = 'items', help = 'check your items')
 async def items(ctx):
-  sync()
   await ctx.send("You have: " + str(itemdata[str(ctx.message.author.id)]))
 
 
@@ -454,73 +437,11 @@ async def pvp(ctx,opponent : discord.Member):
             json.dump(baldata, bal_file)
       else:
         await ctx.send(opponent.name + ' has declined your battle.')
-# @bot.command(name = 'vbattle', help = 'battle villains all across the series!')
-# async def vb(ctx):
-  
-#   character = selectdata[str(ctx.author.id)]
-#   pointless_counter = 0
-#   opponent = random.choice(animals)
-#   opponentname = 
-#   oi = str(ctx.author.id)
-#   chars = userdata[oi]
-#   print(chars)
-#   print(character in chars)
-#   if character in chars:
-#     message = await ctx.send(ctx.author.name + ' is going to battle!')
-#     time.sleep(1)
-#     await message.edit(content = 'Your opponent is ' + opponentname)
-#     time.sleep(1)
-#     await message.edit(content = opponentname + ' sent out ' + opponent + '!')
-#     php = stats[character][0] + leveldata[oi][character] * 2
-#     ehp = stats[opponent][0] + random.randrange(2, 20)
-#     eatk = stats[opponent][2] + random.randrange(4, 40)
-#     pdef = stats[character][1] + leveldata[oi][character] * 2
-#     edef = stats[opponent][1] + random.randrange(2, 20)
-#     patk = stats[character][2] + leveldata[oi][character] * 4
-#     while ehp > 0 and php > 0 and pointless_counter < 12:
-#       time.sleep(1)
-#       if stats[opponent][2] > stats[character][1]:
-#         await message.edit(content = opponent + f' attacked, which did {str(eatk - pdef)} damage.')
-#         php -= (eatk-pdef)
-#       else:
-#         await message.edit(content = f'{opponent} attacked!')
-#         time.sleep(1)
-#         await message.edit(content = "...it did no damage")
-#         pointless_counter += 1
-#       time.sleep(1)
-#       await message.edit(content = f'{character} is at {str(php)} health.')
-#       #now php atk
-#       time.sleep(1)
-#       if patk > edef:
-#         await message.edit(content = character + f' attacked, which did {str(patk-edef)} damage.')
-#         ehp -= (patk - edef)
-#       else:
-#         await message.edit(content = character + ' attacked!')
-#         time.sleep(1)
-#         await message.edit("...it did no damage")
-#         pointless_counter += 1
-#       time.sleep(1)
-#       await message.edit(content = opponent + ' is at ' + str(ehp) + ' health.')
-#     time.sleep(1)
-#     if ehp > 0:
-#       await message.edit(content = opponent + ' wins!')
-#       time.sleep(1)
-#       await message.edit(content = 'weakling, you lost to an AI')
-#     else:
-#       await message.edit(content = 'You win!')
-#       time.sleep(1)
-#       await message.edit(content = 'You recieved ' + str(php - ehp) + ' credits!')
-#       baldata[oi] += php - ehp
-#       with open(file2_name, "w") as bal_file:
-#         json.dump(baldata, bal_file)
-#   else:
-#     await ctx.send("Uh... who?")
 
 @bot.command(name = 'shop', help = 'buy some characters')
 async def shopit(ctx):
   if invalidation == False:
     initialuser = ctx.message.author.name
-    sync()
     oii = str(ctx.author.id)
     items = ['Dark-Pepe', 'Shark-Pepe', 'Senor-Pepe', 'error-Pepe', 'Levelup', 'Dank-Stone', 'Lucky-Charm']
     prices = {
@@ -646,7 +567,6 @@ async def infod(ctx, character):
 async def hunt9(ctx):
   print('searcgubg')
   if invalidation == False:
-    global userdata
     print('glub glub')
     oiyah = str(ctx.author.id)
     if oiyah not in userdata:
@@ -733,14 +653,14 @@ async def roll(context, sides : int):
     await context.send(str(random.randrange(1, sides)))
 
 @bot.command(name = 'text_channel', help = 'Make a new text channel')
-async def create_channel(ctx, channel_name = 'REEEEE'):
+async def create_text_channel(ctx, channel_name = 'REEEEE'):
   if invalidation == False:
     guild = ctx.guild
     await ctx.send(f'Creating a new channel: {channel_name}')
     await guild.create_text_channel(channel_name)
 
 @bot.command(name = 'voice_channel', help = 'Make a new voice channel')
-async def create_channel(ctx, channel_name = 'REEEEE'):
+async def create_voice_channel(ctx, channel_name = 'REEEEE'):
   if invalidation == False:
     guild = ctx.guild
     print(f'Creating a new channel: {channel_name}')
